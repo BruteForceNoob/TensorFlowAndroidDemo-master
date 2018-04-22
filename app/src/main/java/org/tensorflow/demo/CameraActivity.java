@@ -24,6 +24,8 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import static java.lang.System.exit;
+
 public class CameraActivity extends Activity {
   private static final int PERMISSIONS_REQUEST = 1;
 
@@ -31,6 +33,10 @@ public class CameraActivity extends Activity {
   private static final String PERMISSION_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
   public static String QuestionAnswer = null;
 
+  @Override
+  public void onBackPressed() {
+    finish();
+  }
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -38,6 +44,12 @@ public class CameraActivity extends Activity {
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     setContentView(R.layout.activity_camera);
+
+//
+//    if (getIntent().getBooleanExtra("ExitMe", false)) {
+//      finish();
+//      return;
+//    }
 
     if (hasPermission()) {
       if (null == savedInstanceState) {
